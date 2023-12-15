@@ -20,9 +20,6 @@ class Route {
                 return; // Додано return для зупинки подальшого виконання коду
             }
         }
-        else{
-          echo "Controller or Method not found.";
-        }
     }
 }
 

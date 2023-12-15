@@ -28,17 +28,27 @@ class FileController {
         }
     }
 
-    public function deleteFile() {
+   public function deleteFile() {
+    if (isset($_GET['filename'])) {
         $filename = $_GET['filename'];
-        $filePath = $this->uploadDir . $filename;
 
-        if (file_exists($filePath)) {
-            unlink($filePath);
-            echo "File deleted successfully.";
+        if (!empty($filename)) {
+            $filePath = $this->uploadDir . $filename;
+
+            if (file_exists($filePath)) {
+                unlink($filePath);
+                echo "File deleted successfully.";
+            } else {
+                echo "File not found.";
+            }
         } else {
-            echo "File not found.";
+            echo "Filename is empty.";
         }
+    } else {
+        echo "Filename not provided.";
     }
+}
+
 
     public function showFileList() {
         $files = scandir($this->uploadDir);
